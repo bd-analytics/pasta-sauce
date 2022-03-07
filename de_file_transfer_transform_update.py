@@ -158,7 +158,7 @@ def executor(getBucket, getFileName):
     df_1, json_data =get_file_from_S3(getBucket, getFileName)
     print("************* File Read ****************")
 
-    tranfom_data('sample_details', df_1, json_data)
+    tranfom_data(getBucket, df_1, json_data)
     print("************* Transformation Completed Read ****************")
 
     update_staging_using_procedure()
