@@ -85,12 +85,13 @@ def get_file_from_S3(bucket, file_name):
     else:
         print(f"Unsuccessfule S3 get_object response. Status - {status}")
 
-def tranfom_data(bucket, file_name):
+def tranfom_data(bucket, df_1, json_data):
     
-    df=pd.read_json(file_name)
-    
-    with open(file_name,'r') as f:
-        data=simplejson.loads(f.read())
+#     df=pd.read_json(file_name)
+    df = df_1
+    data = json_data
+#     with open(file_name,'r') as f:
+#         data=simplejson.loads(f.read())
     
     # df_nested_list=pd.json_normalize(data,record_path=['statusLogs'])   
     df_nested_list=pd.json_normalize(data,record_path=['statusLogs'], meta=['userId'])    
