@@ -10,10 +10,10 @@ pd.set_option('display.max_rows',1000)
 pd.set_option('display.max_columns',1000)
 pd.set_option('display.width',1000)
 
-ACCESS_KEY='AKIA4JI5PYRPZ4OPAGWQ'
-SECRET_KEY='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'
+ACCESS_KEY='XXXXXXXXXXXXXXXXX'
+SECRET_KEY='XXXXXXXXXXXXX/XXXXXXXXXXXX'
 
-engine=create_engine('postgresql://postgresDB:pg_database_032022@database-1.c4tzhg3p8qh6.ap-south-1.rds.amazonaws.com:5432/postgres')
+engine=create_engine('postgresql://postgresDB:XXXXXXXXXXXXXX@database-1.c4tzhg3p8qh6.ap-south-1.rds.amazonaws.com:5432/postgres')
 
 def lambda_handler(event,context):
     
