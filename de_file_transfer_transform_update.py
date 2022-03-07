@@ -34,7 +34,7 @@ def lambda_handler(event,context):
             }
         else:
             
-            getBucket, getFileName = getDetails(event)
+            getBucket, getFileName = get_details(event)
             # df=getFileFromS3(getBucket, getFileName)
             executor(getBucket, getFileName)
 
@@ -52,14 +52,14 @@ def lambda_handler(event,context):
         }
         raise e
 
-def getDetails(event):
+def get_details(event):
     
     print("The requested bucket is: ", event['bucket'])
     print("The requested file_name is: ", event['file_name'])
     
     return(str(event['bucket']), str(event['file_name']))
 
-def getFileFromS3(bucket, file_name):
+def get_file_from_S3(bucket, file_name):
     
     s3_client=boto3.client('s3',aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
     s3 = boto3.resource('s3',aws_access_key_id=ACCESS_KEY, aws_secret_access_key=SECRET_KEY)
@@ -85,7 +85,7 @@ def getFileFromS3(bucket, file_name):
     else:
         print(f"Unsuccessfule S3 get_object response. Status - {status}")
 
-def tranfomData(bucket, file_name):
+def tranfom_data(bucket, file_name):
     
     df=pd.read_json(file_name)
     
@@ -154,10 +154,10 @@ def empty_preprocessing_table_after_staging_update():
 
 def executor(getBucket, getFileName):
 
-    df_1, json_data =getFileFromS3(getBucket, getFileName)
+    df_1, json_data =get_file_from_S3(getBucket, getFileName)
     print("************* File Read ****************")
 
-    tranfomData('sample_details', df_1, json_data)
+    tranfom_data('sample_details', df_1, json_data)
     print("************* Transformation Completed Read ****************")
 
     update_staging_using_procedure()
